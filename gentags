@@ -1,0 +1,8 @@
+#!/bin/sh
+
+## This script is intended to be used in conjuction with exuberant-ctags:
+## http://ctags.sourceforge.net/
+
+find . -iname "*.cc" -o -iname "*.h" > files
+
+/usr/local/bin/ctags -L files -f tags --verbose=yes
