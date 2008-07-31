@@ -1,0 +1,77 @@
+These notes are typed unabridged, from my moleskine. If someone else is
+going be be looking at this code, maybe they should know what I was
+planning on using it for?
+-----------------------------------------------------------------------
+
+lids (Locality Intrusion Detection System)
+locality of reference c++ IDS project framework.
+
+Questions:
+1. How to gather and keep data about the services, ie:
+      traffic comes in for a measured amount of time, need to display
+      information and keep track of information about them. IP: <blah>,
+      port: #, time between packets/conns and packet rate (pps) (packets
+      per second).
+      
+2. After gather this data, how to keep it between program starts?
+
+3. How to specify "rules" or limits on different kinds of traffic.
+
+Use case:
+      User normally browses the internet only, if we start seeing
+      traffic on IRC ports, is this normal? (no)
+
+4. Should use-intervention be required for this sort of thing? ie:
+approve or disapprove of traffic.
+
+5. std dev. for determining a level over the expected #s?
+
+pps_limit = +/- 100
+port_limi = +/- 5
+expected_ports = []
+
+6. How do you keep track of all the data? Cyclical buffer? Can't keep
+all of it because of memory constraints.
+
+packet comes in, have I see this host before?
+have I seen this port before?
+when is the last time I saw something like this?
+what time of dat is this coming?
+
+A kernel that captures packets and passes them off the modules that do
+the analysis, the kernel keeps track of a large buffer of packet
+information and allows each module to access it. An event calls the
+kernel notifier method when it finds an alarm event.
+
+File structure?
+lids.cxx/h <- int main() goes here
+lidscore.cxx/h <- core pcap capture and handoff
+lidsevent.cxx/h <- interface for events
+lidsbuffer.cxx/h <- impl. of data storage & buffer
+porteven.cxx/h <- file implementing port alerts, implements the
+lidsevent interface
+addressevent.cxx/h <- same as port, buf for addresses.
+
+Supposedly all the files implementing lidsevent would register with the
+lidscore first.
+
+Ideally (way off future), this would be heavily multithreaded so packets
+could be handed off to different analysis modules at the same time.
+
+So where to start?
+
+Well, start with the core I suppose, capturing the packets, storing
+them, pretending to pass them off to handlers, etc.
+
+From there, should figure out the best way to store the data and perhaps
+statistics about the data (port std deviations, time deltas, etc).
+perhaps a linked list soft of structure in lidscore?
+
+Next, implement the handles interface methods in lidsevent.h for each
+kind of traffic we want to capture, need to figure out a way to send
+"allerts" (printfs?) back to the user.
+
+Optional: find a way to kill the traffice if an admin denies it.
+lol -> "lips"
+
+Reference idea: http://writequit.org/blog/?p=109
