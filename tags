@@ -4,3 +4,6 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.7	//
+LIDSCore	./lidscore.h	/^class LIDSCore {$/;"	c
+main	./lids.cxx	/^int main(int argc, char** argv) {$/;"	f
+run	./lidscore.cxx	/^int LIDSCore::run()$/;"	f	class:LIDSCore
