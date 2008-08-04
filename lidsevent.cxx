@@ -7,7 +7,6 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 
-#include "lidscore.h"
 #include "lidsevent.h"
 
 LIDSEvent::LIDSEvent()

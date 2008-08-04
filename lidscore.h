@@ -4,6 +4,9 @@
  * threads
  */
 
+/* for u_char */
+#include <sys/types.h>
+
 class LIDSCore {
       public:
             /* initializer */
