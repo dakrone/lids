@@ -7,6 +7,7 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 
+#include "lidsevent.h"
 #include "lidscore.h"
 
 using namespace std;
@@ -19,6 +20,33 @@ using namespace std;
  * This, of course, assumes that everything works like I want it to, but hey,
  * aren't all projects like that?
  */
+LIDSCore::LIDSCore()
+{
+}
+
+LIDSCore::~LIDSCore()
+{
+}
+
+int LIDSCore::setup()
+{
+      return 0;
+}
+
+int LIDSCore::register_event(LIDSEvent *e)
+{
+      return 0;
+}
+
+void LIDSCore::callback(u_char *args, const struct pcap_pkthdr *header, const u_char *packet)
+{
+      return;
+}
+
+int LIDSCore::store(const struct pcap_pkthdr *header, const u_char *packet)
+{
+      return 0;
+}
 
 int LIDSCore::run()
 {
