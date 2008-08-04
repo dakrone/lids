@@ -74,4 +74,24 @@ kind of traffic we want to capture, need to figure out a way to send
 Optional: find a way to kill the traffice if an admin denies it.
 lol -> "lips"
 
+So evidently, no one in California washes their hands.
+
+...anyway...Back to design details:
+
+lidscore.cxx: (methods)
+- run() - start the capture
+- setup() - initialize pcap sub system, filters
+- register(event) - register an event to be run for every packet. What
+  would eventually be nice is to have a filter so that needless events
+  are not created.
+- callback() - callback function for the pcap capture, handles thread
+  creation/joining and passing off events, calls the "store" method to
+  handle statistic storing.
+- store(packet) - store the packet in a database/list/hash/tuba? of some
+  kind.
+
+Obviously, I'm leaving out all the helper methods and all the class
+cnfiguration (so far). These methods are left as an exercise to the
+reader... oh wait that's me. :P
+
 Reference idea: http://writequit.org/blog/?p=109
