@@ -1,5 +1,10 @@
 /* This is the class interface for being an event */
 
+#ifndef __LIDS_EVENT__
+#define __LIDS_EVENT__
+
+#include <pcap.h>
+
 class LIDSEvent {
       public:
             LIDSEvent();
@@ -7,3 +12,5 @@ class LIDSEvent {
             virtual ~LIDSEvent();
             virtual int process_packet(const struct pcap_pkthdr *header, const u_char *packet);
 };
+
+#endif

@@ -4,6 +4,11 @@
  * threads
  */
 
+#ifndef __LIDS_CORE__
+#define __LIDS_CORE__
+
+#include "lidsevent.h"
+
 /* for u_char */
 #include <sys/types.h>
 
@@ -26,3 +31,4 @@ class LIDSCore {
             int run();
 };
 
+#endif

@@ -1,3 +1,5 @@
 ./lids.cxx
 ./lidscore.cxx
 ./lidscore.h
+./lidsevent.cxx
+./lidsevent.h

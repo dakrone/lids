@@ -8,5 +8,5 @@ run: lids
 	./lids
 
 clean:
-	rm *.o
-	rm lids
+	rm -f *.o
+	rm -f lids

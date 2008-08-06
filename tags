@@ -4,6 +4,16 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.7	//
+LIDSCore	./lidscore.cxx	/^LIDSCore::LIDSCore()$/;"	f	class:LIDSCore
 LIDSCore	./lidscore.h	/^class LIDSCore {$/;"	c
+LIDSEvent	./lidsevent.cxx	/^LIDSEvent::LIDSEvent()$/;"	f	class:LIDSEvent
+LIDSEvent	./lidsevent.h	/^class LIDSEvent {$/;"	c
+__LIDS_CORE__	./lidscore.h	8;"	d
+__LIDS_EVENT__	./lidsevent.h	4;"	d
+callback	./lidscore.cxx	/^void LIDSCore::callback(u_char *args, const struct pcap_pkthdr *header, const u_char *packet)$/;"	f	class:LIDSCore
 main	./lids.cxx	/^int main(int argc, char** argv) {$/;"	f
+register_event	./lidscore.cxx	/^int LIDSCore::register_event(LIDSEvent *e)$/;"	f	class:LIDSCore
 run	./lidscore.cxx	/^int LIDSCore::run()$/;"	f	class:LIDSCore
+setup	./lidscore.cxx	/^int LIDSCore::setup()$/;"	f	class:LIDSCore
+store	./lidscore.cxx	/^int LIDSCore::store(const struct pcap_pkthdr *header, const u_char *packet)$/;"	f	class:LIDSCore
+~LIDSCore	./lidscore.cxx	/^LIDSCore::~LIDSCore()$/;"	f	class:LIDSCore
