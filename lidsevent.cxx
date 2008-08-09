@@ -13,3 +13,12 @@ LIDSEvent::LIDSEvent()
 {
 }
 
+LIDSEvent::~LIDSEvent()
+{
+}
+
+int LIDSEvent::process_packet(const struct pcap_pkthdr *header, const u_char *packet)
+{
+      return 0;
+}
+

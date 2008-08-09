@@ -3,3 +3,5 @@
 ./lidscore.h
 ./lidsevent.cxx
 ./lidsevent.h
+./testevent.cxx
+./testevent.h
