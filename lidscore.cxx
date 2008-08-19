@@ -39,6 +39,15 @@ int LIDSCore::register_event(LIDSEvent *e)
 
 void LIDSCore::callback(u_char *args, const struct pcap_pkthdr *header, const u_char *packet)
 {
+      static int count = 0;
+      printf(".");
+      fflush(stdout);
+      count++;
+      if (count >= 10) {
+            printf("NrNrNrNr\n");
+            fflush(stdout);
+            exit(0);
+      }
       return;
 }
 
@@ -50,53 +59,43 @@ int LIDSCore::store(const struct pcap_pkthdr *header, const u_char *packet)
 int LIDSCore::run()
 {
       char *dev;
-      char *net;
-      char *mask;
-      int ret;
       char errbuf[PCAP_ERRBUF_SIZE];
-      bpf_u_int32 netp;
-      bpf_u_int32 maskp;
-      struct in_addr addr;
+      pcap_t* descr;
+      bpf_program filter;
+      bpf_u_int32 net;
+      bpf_u_int32 mask;
 
       dev = pcap_lookupdev(errbuf);
 
       if(dev == NULL) {
-            cout << errbuf << endl;
+            cout << "pcap_lookupdev(): " << errbuf << endl;
             exit(1);
       }
 
       /* print out device name */
-      cout << "DEV: " << dev << endl;
+      cout << "Dev: " << dev << endl;
 
-      /* ask pcap for the network address and mask of the device */
-      ret = pcap_lookupnet(dev,&netp,&maskp,errbuf);
+      pcap_lookupnet(dev,&net,&mask,errbuf);
 
-      if(ret == -1) {
-            cout << errbuf << endl;
+      descr = pcap_open_live(dev,BUFSIZ,1,0,errbuf);
+
+      if(descr == NULL) {
+            cout << "pcap_open_live(): " << errbuf << endl;
             exit(1);
       }
 
-      /* get the network address in a human readable form */
-      addr.s_addr = netp;
-      net = inet_ntoa(addr);
-
-      if(net == NULL) {
-            perror("inet_ntoa");
+      if(pcap_compile(descr,&filter,"tcp",0,net) == -1) {
+            cout << "Error calling pcap_compile" << endl;
             exit(1);
       }
 
-      cout << "NET: " << net << endl;
-
-      /* do the same as above for the device's mask */
-      addr.s_addr = maskp;
-      mask = inet_ntoa(addr);
-
-      if(mask == NULL) {
-            perror("inet_ntoa");
+      /* set the compiled program as the filter */
+      if(pcap_setfilter(descr,&filter) == -1) {
+            cout << "Error calling pcap_setfilter" << endl;
             exit(1);
       }
 
-      cout << "MASK: " << mask << endl;
+      pcap_loop(descr,-1,(pcap_handler)callback,NULL);
 
       return 0;
 }

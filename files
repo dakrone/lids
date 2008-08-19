@@ -1,4 +1,7 @@
+./.lidscore.cxx.swp
 ./lids.cxx
+./lidsbuffer.cxx
+./lidsbuffer.h
 ./lidscore.cxx
 ./lidscore.h
 ./lidsevent.cxx

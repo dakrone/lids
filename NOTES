@@ -116,4 +116,25 @@ Calculating new valued should not happen when a packet is added, but
 when a method is called. In addition, if no new packets were added since
 last time, cache the result and use that.
 
+lidsbuffer.cxx:
+- store(packet_header) - pushes the packet header to the end of the list
+  and calls cleanup()
+- cleanup() - given a perioud of time of which to store packet headers
+  (ie: 5min), remove all the packet headers which are not in that time
+  period.
+- get_port_list() - get a list of the ports for the headers, ie:
+  80,443,22,etc.
+- get_pps() - return the packets per second. # of items in the list
+  divided by storage time in seconds.
+
+linked-list or double-linked list? I think a single would do, data
+structure?
+  type (TCP/UDP)
+  port
+  src
+  dest
+  time
+  size
+
+
 Reference idea: http://writequit.org/blog/?p=109

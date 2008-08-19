@@ -4,23 +4,40 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.7	//
+LIDSBuffer	./lidsbuffer.cxx	/^LIDSBuffer::LIDSBuffer()$/;"	f	class:LIDSBuffer
+LIDSBuffer	./lidsbuffer.h	/^class LIDSBuffer$/;"	c
 LIDSCore	./lidscore.cxx	/^LIDSCore::LIDSCore()$/;"	f	class:LIDSCore
 LIDSCore	./lidscore.h	/^class LIDSCore {$/;"	c
 LIDSEvent	./lidsevent.cxx	/^LIDSEvent::LIDSEvent()$/;"	f	class:LIDSEvent
 LIDSEvent	./lidsevent.h	/^class LIDSEvent {$/;"	c
 TestEvent	./testevent.cxx	/^TestEvent::TestEvent()$/;"	f	class:TestEvent
 TestEvent	./testevent.h	/^class TestEvent: LIDSEvent$/;"	c
+__LIDSBUFFER__	./lidsbuffer.h	7;"	d
 __LIDS_CORE__	./lidscore.h	8;"	d
 __LIDS_EVENT__	./lidsevent.h	4;"	d
 __TEST_EVENT__	./testevent.h	6;"	d
 callback	./lidscore.cxx	/^void LIDSCore::callback(u_char *args, const struct pcap_pkthdr *header, const u_char *packet)$/;"	f	class:LIDSCore
+cleanup	./lidsbuffer.cxx	/^int LIDSBuffer::cleanup()$/;"	f	class:LIDSBuffer
+dst	./lidsbuffer.h	/^            int dst;$/;"	m	class:LIDSBuffer
+get_port_list	./lidsbuffer.cxx	/^char** LIDSBuffer::get_port_list()$/;"	f	class:LIDSBuffer
+get_pps	./lidsbuffer.cxx	/^u_int LIDSBuffer::get_pps()$/;"	f	class:LIDSBuffer
 main	./lids.cxx	/^int main(int argc, char** argv) {$/;"	f
+next	./lidsbuffer.h	/^            LIDSBuffer* next;$/;"	m	class:LIDSBuffer
+port	./lidsbuffer.h	/^            int port;$/;"	m	class:LIDSBuffer
 process_packet	./lidsevent.cxx	/^int LIDSEvent::process_packet(const struct pcap_pkthdr *header, const u_char *packet)$/;"	f	class:LIDSEvent
 process_packet	./testevent.cxx	/^int TestEvent::process_packet(const struct pcap_pkthdr *header, const u_char *packet)$/;"	f	class:TestEvent
+push	./lidsbuffer.cxx	/^bool LIDSBuffer::push(char type, int port, int src, int dst, int time, int size)$/;"	f	class:LIDSBuffer
 register_event	./lidscore.cxx	/^int LIDSCore::register_event(LIDSEvent *e)$/;"	f	class:LIDSCore
 run	./lidscore.cxx	/^int LIDSCore::run()$/;"	f	class:LIDSCore
 setup	./lidscore.cxx	/^int LIDSCore::setup()$/;"	f	class:LIDSCore
+size	./lidsbuffer.h	/^            int size;$/;"	m	class:LIDSBuffer
+src	./lidsbuffer.h	/^            int src;$/;"	m	class:LIDSBuffer
+store	./lidsbuffer.cxx	/^bool LIDSBuffer::store(const struct pcap_pkthdr *header)$/;"	f	class:LIDSBuffer
 store	./lidscore.cxx	/^int LIDSCore::store(const struct pcap_pkthdr *header, const u_char *packet)$/;"	f	class:LIDSCore
+time	./lidsbuffer.h	/^            int time;$/;"	m	class:LIDSBuffer
+type	./lidsbuffer.h	/^            char type;$/;"	m	class:LIDSBuffer
+unshift	./lidsbuffer.cxx	/^bool LIDSBuffer::unshift()$/;"	f	class:LIDSBuffer
+~LIDSBuffer	./lidsbuffer.cxx	/^LIDSBuffer::~LIDSBuffer()$/;"	f	class:LIDSBuffer
 ~LIDSCore	./lidscore.cxx	/^LIDSCore::~LIDSCore()$/;"	f	class:LIDSCore
 ~LIDSEvent	./lidsevent.cxx	/^LIDSEvent::~LIDSEvent()$/;"	f	class:LIDSEvent
 ~TestEvent	./testevent.cxx	/^TestEvent::~TestEvent()$/;"	f	class:TestEvent

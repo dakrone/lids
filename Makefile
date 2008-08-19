@@ -1,9 +1,22 @@
-lids:
-	g++ -Wall -c -o lidsevent.o lidsevent.cxx
-	g++ -Wall -c -o testevent.o testevent.cxx
-	g++ -Wall -c -o lidscore.o lidscore.cxx
-	g++ -Wall -c -o lids.o lids.cxx
-	g++ -Wall -lpcap -o lids lidsevent.o testevent.o lidscore.o lids.o
+CC = g++ -Wall
+
+lids: lids.o lidscore.o testevent.o lidsevent.o lidsbuffer.o
+	${CC} -lpcap -o lids lidsbuffer.o lidsevent.o testevent.o lidscore.o lids.o
+
+lidsevent.o:
+	${CC} -c lidsevent.cxx
+
+lidsbuffer.o:
+	${CC} -c lidsbuffer.cxx
+
+testevent.o:
+	${CC} -c testevent.cxx
+
+lidscore.o:
+	${CC} -c lidscore.cxx
+
+lids.o:
+	$(CC) -c lids.cxx
 
 run: lids
 	./lids
