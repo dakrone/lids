@@ -1,4 +1,3 @@
-./.lidscore.cxx.swp
 ./lids.cxx
 ./lidsbuffer.cxx
 ./lidsbuffer.h
@@ -6,5 +5,7 @@
 ./lidscore.h
 ./lidsevent.cxx
 ./lidsevent.h
+./lidsrunner.cxx
+./lidsrunner.h
 ./testevent.cxx
 ./testevent.h

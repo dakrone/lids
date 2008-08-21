@@ -1,7 +1,10 @@
 CC = g++ -Wall
 
-lids: lids.o lidscore.o testevent.o lidsevent.o lidsbuffer.o
-	${CC} -lpcap -o lids lidsbuffer.o lidsevent.o testevent.o lidscore.o lids.o
+lids: lids.o lidscore.o testevent.o lidsevent.o lidsbuffer.o lidsrunner.o
+	${CC} -lpcap -o lids lidsrunner.o lidsbuffer.o lidsevent.o testevent.o lidscore.o lids.o
+
+lidsrunner.o: lidsrunner.cxx
+	${CC} -c lidsrunner.cxx
 
 lidsevent.o: lidsevent.cxx
 	${CC} -c lidsevent.cxx

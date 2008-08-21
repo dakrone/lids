@@ -1,15 +1,16 @@
 #include <iostream>
 
-#include "lidscore.h"
+#include "lidsrunner.h"
 
 using namespace std;
 
 int main(int argc, char** argv) {
-      cout << "Hello World" << endl;
+      cout << "LIDS" << endl;
 
-      LIDSCore* c = new LIDSCore();
+      LIDSRunner *r = new LIDSRunner();
 
-      c->run();
+      r->setup();
+      r->run();
 
       return 0;
 }
