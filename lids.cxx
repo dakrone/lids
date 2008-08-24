@@ -9,8 +9,7 @@ int main(int argc, char** argv) {
 
       LIDSRunner *r = new LIDSRunner();
 
-      r->setup();
-      r->run();
+      r->start();
 
       return 0;
 }

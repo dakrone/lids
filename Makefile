@@ -21,6 +21,8 @@ lidscore.o: lidscore.cxx
 lids.o: lids.cxx
 	$(CC) -c lids.cxx
 
+remake: clean lids
+
 run: lids
 	./lids
 

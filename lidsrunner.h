@@ -14,12 +14,8 @@ class LIDSRunner
             static void callback(u_char *args, const struct pcap_pkthdr *header,
                         const u_char *packet);
             /* setup function to initialize pcap setup */
-            void setup();
-            /* start the capture */
-            void run();
+            void start();
       private:
-            static LIDSCore* core;
-            static pcap_t* handle;
             char errbuf[PCAP_ERRBUF_SIZE];
             bpf_program filter;
             bpf_u_int32 net;
@@ -28,8 +24,5 @@ class LIDSRunner
 
 };
 
-/* initialize the class static core class */
-LIDSCore* LIDSRunner::core = new LIDSCore();
-pcap_t* LIDSRunner::handle = NULL;
 
 #endif

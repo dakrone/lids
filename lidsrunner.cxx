@@ -21,8 +21,11 @@ void LIDSRunner::callback(u_char *args, const struct pcap_pkthdr *header,
       fflush(stdout);
 }
 
-void LIDSRunner::setup()
+void LIDSRunner::start()
 {
+      /* initialize the class static core class */
+      pcap_t* handle;
+
       dev = pcap_lookupdev(errbuf);
 
       if(dev == NULL) {
@@ -52,10 +55,7 @@ void LIDSRunner::setup()
             cout << "Error calling pcap_setfilter" << endl;
             exit(1);
       }
-}
 
-void LIDSRunner::run()
-{
       pcap_loop(handle,-1,(pcap_handler)callback,NULL);
 }
 
