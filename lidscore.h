@@ -12,6 +12,7 @@
 
 /* for u_char */
 #include <sys/types.h>
+#include <vector>
 
 class LIDSCore {
       public:
@@ -26,6 +27,8 @@ class LIDSCore {
             void dispatch();
             void store();
       private:
+            std::vector<LIDSEvent*> eventlist;
+            LIDSBuffer* buff;
 };
 
 #endif

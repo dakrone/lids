@@ -22,13 +22,18 @@ void LIDSRunner::callback(u_char *args, const struct pcap_pkthdr *header,
 {
       cout << ".";
       fflush(stdout);
-      pcore->dispatch();
+      pcore->process();
 }
 
 void LIDSRunner::start()
 {
       /* initialize the class static core class */
       pcap_t* handle;
+      char errbuf[PCAP_ERRBUF_SIZE];
+      bpf_program filter;
+      bpf_u_int32 net;
+      bpf_u_int32 mask;
+      char *dev;
 
       dev = pcap_lookupdev(errbuf);
 
@@ -61,5 +66,8 @@ void LIDSRunner::start()
       }
 
       pcap_loop(handle,-1,(pcap_handler)callback,NULL);
+
+      free(handle);
+      free(dev);
 }
 

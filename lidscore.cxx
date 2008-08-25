@@ -1,11 +1,5 @@
 #include <iostream>
-#include <stdio.h>
-#include <stdlib.h>
-#include <pcap.h>
-#include <errno.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <arpa/inet.h>
+#include <vector>
 
 #include "lidscore.h"
 #include "lidsbuffer.h"
@@ -22,26 +16,40 @@ using namespace std;
  */
 LIDSCore::LIDSCore()
 {
+      this->buff = new LIDSBuffer();
 }
 
 LIDSCore::~LIDSCore()
 {
+      delete buff;
+      vector<LIDSEvent*>::const_iterator cii;
+      for(cii=eventlist.begin();cii!=eventlist.end();cii++)
+      {
+            delete *cii;
+      }
 }
 
 int LIDSCore::register_event(LIDSEvent *e)
 {
+      this->eventlist.push_back(e);
+      cout << "Registered event." << endl;
       return 0;
 }
 
 void LIDSCore::process()
 {
+      cout << "processing packet" << endl;
+      this->store();
+      this->dispatch();
 }
 
 void LIDSCore::dispatch()
 {
+      cout << "dispatching event" << endl;
 }
 
 void LIDSCore::store()
 {
+      cout << "storing packet" << endl;
 }
 
