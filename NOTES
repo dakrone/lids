@@ -136,5 +136,17 @@ structure?
   time
   size
 
+Alright, I finally found a way to get the callback and the pcore pointer
+to behave nicely (pcore is a pointer to the LIDSCore class).
+
+I made pcore global, so the callback could use it and it could finally
+be accessed from main also.
+
+There is a new class "LIDSRunner" that actually handles the setup and
+callback for the pcap stuff. Hopefully this is the way it will stay
+(Unless I run into other static issues).
+
+With this issue fixed, I can continue stubbing and hopefully finish that
+up. The next major hurdle will be threading.
 
 Reference idea: http://writequit.org/blog/?p=109

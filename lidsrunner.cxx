@@ -6,6 +6,9 @@
 
 using namespace std;
 
+/* global pointer to our core, declared in lids.cxx*/
+extern LIDSCore *pcore;
+
 LIDSRunner::LIDSRunner()
 {
 }
@@ -19,6 +22,7 @@ void LIDSRunner::callback(u_char *args, const struct pcap_pkthdr *header,
 {
       cout << ".";
       fflush(stdout);
+      pcore->dispatch();
 }
 
 void LIDSRunner::start()

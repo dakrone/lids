@@ -10,7 +10,7 @@
 
 #include "lidsevent.h"
 
-class TestEvent: LIDSEvent
+class TestEvent: public LIDSEvent
 {
       public:
             TestEvent();

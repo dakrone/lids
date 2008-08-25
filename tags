@@ -13,7 +13,7 @@ LIDSEvent	./lidsevent.h	/^class LIDSEvent {$/;"	c
 LIDSRunner	./lidsrunner.cxx	/^LIDSRunner::LIDSRunner()$/;"	f	class:LIDSRunner
 LIDSRunner	./lidsrunner.h	/^class LIDSRunner$/;"	c
 TestEvent	./testevent.cxx	/^TestEvent::TestEvent()$/;"	f	class:TestEvent
-TestEvent	./testevent.h	/^class TestEvent: LIDSEvent$/;"	c
+TestEvent	./testevent.h	/^class TestEvent: public LIDSEvent$/;"	c
 __LIDSBUFFER__	./lidsbuffer.h	7;"	d
 __LIDS_CORE__	./lidscore.h	8;"	d
 __LIDS_EVENT__	./lidsevent.h	4;"	d
@@ -21,8 +21,6 @@ __LIDS_RUNNER__	./lidsrunner.h	2;"	d
 __TEST_EVENT__	./testevent.h	6;"	d
 callback	./lidsrunner.cxx	/^void LIDSRunner::callback(u_char *args, const struct pcap_pkthdr *header,$/;"	f	class:LIDSRunner
 cleanup	./lidsbuffer.cxx	/^int LIDSBuffer::cleanup()$/;"	f	class:LIDSBuffer
-core	./lidsrunner.h	/^            static LIDSCore* core;$/;"	m	class:LIDSRunner
-core	./lidsrunner.h	/^LIDSCore* LIDSRunner::core = new LIDSCore();$/;"	m	class:LIDSRunner
 dev	./lidsrunner.h	/^            char *dev;$/;"	m	class:LIDSRunner
 dispatch	./lidscore.cxx	/^void LIDSCore::dispatch()$/;"	f	class:LIDSCore
 dst	./lidsbuffer.h	/^            int dst;$/;"	m	class:LIDSBuffer
@@ -30,8 +28,6 @@ errbuf	./lidsrunner.h	/^            char errbuf[PCAP_ERRBUF_SIZE];$/;"	m	class:L
 filter	./lidsrunner.h	/^            bpf_program filter;$/;"	m	class:LIDSRunner
 get_port_list	./lidsbuffer.cxx	/^char** LIDSBuffer::get_port_list()$/;"	f	class:LIDSBuffer
 get_pps	./lidsbuffer.cxx	/^u_int LIDSBuffer::get_pps()$/;"	f	class:LIDSBuffer
-handle	./lidsrunner.h	/^            static pcap_t* handle;$/;"	m	class:LIDSRunner
-handle	./lidsrunner.h	/^pcap_t* LIDSRunner::handle = NULL;$/;"	m	class:LIDSRunner
 main	./lids.cxx	/^int main(int argc, char** argv) {$/;"	f
 mask	./lidsrunner.h	/^            bpf_u_int32 mask;$/;"	m	class:LIDSRunner
 net	./lidsrunner.h	/^            bpf_u_int32 net;$/;"	m	class:LIDSRunner
@@ -42,10 +38,9 @@ process_packet	./lidsevent.cxx	/^int LIDSEvent::process_packet(const struct pcap
 process_packet	./testevent.cxx	/^int TestEvent::process_packet(const struct pcap_pkthdr *header, const u_char *packet)$/;"	f	class:TestEvent
 push	./lidsbuffer.cxx	/^bool LIDSBuffer::push(char type, int port, int src, int dst, int time, int size)$/;"	f	class:LIDSBuffer
 register_event	./lidscore.cxx	/^int LIDSCore::register_event(LIDSEvent *e)$/;"	f	class:LIDSCore
-run	./lidsrunner.cxx	/^void LIDSRunner::run()$/;"	f	class:LIDSRunner
-setup	./lidsrunner.cxx	/^void LIDSRunner::setup()$/;"	f	class:LIDSRunner
 size	./lidsbuffer.h	/^            int size;$/;"	m	class:LIDSBuffer
 src	./lidsbuffer.h	/^            int src;$/;"	m	class:LIDSBuffer
+start	./lidsrunner.cxx	/^void LIDSRunner::start()$/;"	f	class:LIDSRunner
 store	./lidsbuffer.cxx	/^bool LIDSBuffer::store(const struct pcap_pkthdr *header)$/;"	f	class:LIDSBuffer
 store	./lidscore.cxx	/^void LIDSCore::store()$/;"	f	class:LIDSCore
 time	./lidsbuffer.h	/^            int time;$/;"	m	class:LIDSBuffer
