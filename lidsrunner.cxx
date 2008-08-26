@@ -3,6 +3,7 @@
 #include <sys/types.h>
 
 #include "lidsrunner.h"
+#include "lidsdebug.h"
 
 using namespace std;
 
@@ -20,13 +21,16 @@ LIDSRunner::~LIDSRunner()
 void LIDSRunner::callback(u_char *args, const struct pcap_pkthdr *header,
             const u_char *packet)
 {
+      IN();
       cout << ".";
       fflush(stdout);
       pcore->process(header);
+      OUT();
 }
 
 void LIDSRunner::start()
 {
+      IN();
       /* initialize the class static core class */
       pcap_t* handle;
       char errbuf[PCAP_ERRBUF_SIZE];
@@ -54,7 +58,7 @@ void LIDSRunner::start()
             exit(1);
       }
 
-      if(pcap_compile(handle,&filter,"tcp and udp",0,net) == -1) {
+      if(pcap_compile(handle,&filter,"tcp or udp",0,net) == -1) {
             cout << "Error calling pcap_compile" << endl;
             exit(1);
       }
@@ -69,5 +73,6 @@ void LIDSRunner::start()
 
       free(handle);
       free(dev);
+      OUT();
 }
 

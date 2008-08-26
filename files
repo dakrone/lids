@@ -3,6 +3,7 @@
 ./lidsbuffer.h
 ./lidscore.cxx
 ./lidscore.h
+./lidsdebug.h
 ./lidsevent.cxx
 ./lidsevent.h
 ./lidsrunner.cxx

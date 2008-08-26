@@ -1,4 +1,8 @@
+# regular compile
 CC = g++ -Wall
+# For debug (uncomment)
+CC = g++ -g -Wall -DDEBUG
+
 
 lids: lids.o lidscore.o testevent.o lidsevent.o lidsbuffer.o lidsrunner.o
 	${CC} -lpcap -o lids lidsrunner.o lidsbuffer.o lidsevent.o testevent.o lidscore.o lids.o

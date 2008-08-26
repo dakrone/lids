@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include "lidsbuffer.h"
+#include "lidsdebug.h"
 
 using namespace std;
 
@@ -26,6 +27,7 @@ LIDSBuffer::~LIDSBuffer()
 
 bool LIDSBuffer::store(const struct pcap_pkthdr *header)
 {
+      IN();
       if (packet_num <= 0) {
             head = this;
       }
@@ -35,30 +37,41 @@ bool LIDSBuffer::store(const struct pcap_pkthdr *header)
             cout << "there are now: " << packet_num << " packets" << endl;
       }
 
+      OUTd(0);
       return true;
 }
 
 int LIDSBuffer::cleanup()
 {
+      IN();
+      OUT();
       return 0;
 }
 
 char** LIDSBuffer::get_port_list()
 {
+      IN();
+      OUT();
       return NULL;
 }
 
 u_int LIDSBuffer::get_pps()
 {
+      IN();
+      OUT();
       return 100;
 }
 
 bool LIDSBuffer::unshift()
 {
+      IN();
+      OUT();
       return true;
 }
 
 bool LIDSBuffer::push(char type, int port, int src, int dst, int time, int size)
 {
+      IN();
+      OUT();
       return true;
 }

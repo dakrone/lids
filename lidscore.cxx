@@ -3,6 +3,7 @@
 
 #include "lidscore.h"
 #include "lidsbuffer.h"
+#include "lidsdebug.h"
 
 using namespace std;
 
@@ -31,26 +32,31 @@ LIDSCore::~LIDSCore()
 
 int LIDSCore::register_event(LIDSEvent *e)
 {
+      IN();
       this->eventlist.push_back(e);
       cout << "Registered event." << endl;
+      OUTd(0);
       return 0;
 }
 
 void LIDSCore::process(const struct pcap_pkthdr *header)
 {
-      cout << "processing packet" << endl;
+      IN();
       this->store(header);
       this->dispatch();
+      OUT();
 }
 
 void LIDSCore::dispatch()
 {
-      cout << "dispatching event" << endl;
+      IN();
+      OUT();
 }
 
 void LIDSCore::store(const struct pcap_pkthdr *header)
 {
-      cout << "storing packet" << endl;
+      IN();
       buff->store(header);
+      OUT();
 }
 

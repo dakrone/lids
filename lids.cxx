@@ -4,6 +4,7 @@
 #include "lidscore.h"
 #include "testevent.h"
 #include "lidsevent.h"
+#include "lidsdebug.h"
 
 using namespace std;
 
@@ -11,6 +12,7 @@ using namespace std;
 LIDSCore *pcore = new LIDSCore();
 
 int main(int argc, char** argv) {
+      IN();
       cout << "-= LIDS =-" << endl;
 
       LIDSRunner *runner = new LIDSRunner();
@@ -21,6 +23,7 @@ int main(int argc, char** argv) {
 
 
       runner->start();
+      OUTd(0);
       return 0;
 }
 
