@@ -22,7 +22,7 @@ void LIDSRunner::callback(u_char *args, const struct pcap_pkthdr *header,
 {
       cout << ".";
       fflush(stdout);
-      pcore->process();
+      pcore->process(header);
 }
 
 void LIDSRunner::start()
@@ -54,7 +54,7 @@ void LIDSRunner::start()
             exit(1);
       }
 
-      if(pcap_compile(handle,&filter,"tcp",0,net) == -1) {
+      if(pcap_compile(handle,&filter,"tcp and udp",0,net) == -1) {
             cout << "Error calling pcap_compile" << endl;
             exit(1);
       }

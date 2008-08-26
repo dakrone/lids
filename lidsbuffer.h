@@ -31,6 +31,9 @@ class LIDSBuffer
             int time;
             int size;
             LIDSBuffer* next;
+            LIDSBuffer* head;
+
+            int packet_num;
 
 };
 

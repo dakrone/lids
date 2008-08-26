@@ -2,6 +2,8 @@
 
 #include "lidsbuffer.h"
 
+using namespace std;
+
 LIDSBuffer::LIDSBuffer()
 {
       type = 0;
@@ -11,6 +13,8 @@ LIDSBuffer::LIDSBuffer()
       time = 0;
       size = 0;
       next = NULL;
+      head = NULL;
+      packet_num = 0;
 }
 
 LIDSBuffer::~LIDSBuffer()
@@ -22,6 +26,15 @@ LIDSBuffer::~LIDSBuffer()
 
 bool LIDSBuffer::store(const struct pcap_pkthdr *header)
 {
+      if (packet_num <= 0) {
+            head = this;
+      }
+      else
+      {
+            packet_num++;
+            cout << "there are now: " << packet_num << " packets" << endl;
+      }
+
       return true;
 }
 

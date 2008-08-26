@@ -36,10 +36,10 @@ int LIDSCore::register_event(LIDSEvent *e)
       return 0;
 }
 
-void LIDSCore::process()
+void LIDSCore::process(const struct pcap_pkthdr *header)
 {
       cout << "processing packet" << endl;
-      this->store();
+      this->store(header);
       this->dispatch();
 }
 
@@ -48,8 +48,9 @@ void LIDSCore::dispatch()
       cout << "dispatching event" << endl;
 }
 
-void LIDSCore::store()
+void LIDSCore::store(const struct pcap_pkthdr *header)
 {
       cout << "storing packet" << endl;
+      buff->store(header);
 }
 
