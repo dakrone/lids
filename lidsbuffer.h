@@ -14,8 +14,8 @@ class LIDSBuffer
       public:
             LIDSBuffer();
             ~LIDSBuffer();
-            bool store(const struct pcap_pkthdr *header);
-            int cleanup();
+            bool buff_store(const struct pcap_pkthdr *header);
+            int buff_cleanup();
             char** get_port_list();
             u_int get_pps();
 

@@ -18,9 +18,9 @@ static const char *indent = __indent_string + INDENT_MAX;
 } while(0)
 #else
 #define IN(); /* nothing */
-#define INf(); /* nothing */
+#define INf(f,args...); /* nothing */
 #define OUT(); /* nothing */
-#define OUTp(); /* nothing */
-#define OUTd(); /* nothing */
-#define OUTf(); /* nothing */
+#define OUTp(p); /* nothing */
+#define OUTd(d); /* nothing */
+#define OUTf(f,args...); /* nothing */
 #endif

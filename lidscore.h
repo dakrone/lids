@@ -22,10 +22,11 @@ class LIDSCore {
             ~LIDSCore();
 
             /* register an event handler with the Core */
-            int register_event(LIDSEvent *e);
-            void process(const struct pcap_pkthdr *header);
-            void dispatch();
-            void store(const struct pcap_pkthdr *header);
+            int core_register_event(LIDSEvent *e);
+            std::vector<LIDSEvent*> core_get_registered_events();
+            void core_process(const struct pcap_pkthdr *header);
+            void core_dispatch();
+            void core_store(const struct pcap_pkthdr *header);
       private:
             std::vector<LIDSEvent*> eventlist;
             LIDSBuffer* buff;

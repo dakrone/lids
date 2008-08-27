@@ -16,6 +16,7 @@ class TestEvent: public LIDSEvent
             TestEvent();
             ~TestEvent();
             int process_packet(const struct pcap_pkthdr *header, const u_char *packet);
+            char* get_event_name();
 };
 
 #endif

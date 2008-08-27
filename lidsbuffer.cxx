@@ -25,7 +25,7 @@ LIDSBuffer::~LIDSBuffer()
       }
 }
 
-bool LIDSBuffer::store(const struct pcap_pkthdr *header)
+bool LIDSBuffer::buff_store(const struct pcap_pkthdr *header)
 {
       IN();
       if (packet_num <= 0) {
@@ -41,7 +41,7 @@ bool LIDSBuffer::store(const struct pcap_pkthdr *header)
       return true;
 }
 
-int LIDSBuffer::cleanup()
+int LIDSBuffer::buff_cleanup()
 {
       IN();
       OUT();

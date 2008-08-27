@@ -1,7 +1,7 @@
 # regular compile
 CC = g++ -Wall
 # For debug (uncomment)
-CC = g++ -g -Wall -DDEBUG
+# CC = g++ -g -Wall -DDEBUG
 
 
 lids: lids.o lidscore.o testevent.o lidsevent.o lidsbuffer.o lidsrunner.o
@@ -28,7 +28,7 @@ lids.o: lids.cxx
 remake: clean lids
 
 run: lids
-	./lids
+	sudo ./lids
 
 clean:
 	rm -f *.o

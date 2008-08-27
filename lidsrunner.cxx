@@ -7,7 +7,7 @@
 
 using namespace std;
 
-/* global pointer to our core, declared in lids.cxx*/
+/* global pointer to our core, declared in lids.cxx */
 extern LIDSCore *pcore;
 
 LIDSRunner::LIDSRunner()
@@ -24,7 +24,7 @@ void LIDSRunner::callback(u_char *args, const struct pcap_pkthdr *header,
       IN();
       cout << ".";
       fflush(stdout);
-      pcore->process(header);
+      pcore->core_process(header);
       OUT();
 }
 
@@ -47,6 +47,7 @@ void LIDSRunner::start()
       }
 
       /* print out device name */
+      //dev = "en1";
       cout << "Dev: " << dev << endl;
 
       pcap_lookupnet(dev,&net,&mask,errbuf);

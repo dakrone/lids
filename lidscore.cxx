@@ -30,33 +30,42 @@ LIDSCore::~LIDSCore()
       }
 }
 
-int LIDSCore::register_event(LIDSEvent *e)
+vector<LIDSEvent*> LIDSCore::core_get_registered_events()
+{
+      IN();
+      /* debug pointer for OUTp */
+      vector<LIDSEvent*>* p = &this->eventlist;
+      OUTp(p);
+      return this->eventlist;
+}
+
+int LIDSCore::core_register_event(LIDSEvent *e)
 {
       IN();
       this->eventlist.push_back(e);
-      cout << "Registered event." << endl;
+      cout << "Registered event: " << e->get_event_name() << endl;
       OUTd(0);
       return 0;
 }
 
-void LIDSCore::process(const struct pcap_pkthdr *header)
+void LIDSCore::core_process(const struct pcap_pkthdr *header)
 {
       IN();
-      this->store(header);
-      this->dispatch();
+      this->core_store(header);
+      this->core_dispatch();
       OUT();
 }
 
-void LIDSCore::dispatch()
+void LIDSCore::core_dispatch()
 {
       IN();
       OUT();
 }
 
-void LIDSCore::store(const struct pcap_pkthdr *header)
+void LIDSCore::core_store(const struct pcap_pkthdr *header)
 {
       IN();
-      buff->store(header);
+      buff->buff_store(header);
       OUT();
 }
 
