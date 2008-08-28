@@ -8,7 +8,7 @@
 
 #include <pcap.h>
 #include <sys/types.h>
-#include <vector>
+#include <list>
 
 class LIDSBuffer
 {
@@ -25,10 +25,10 @@ class LIDSBuffer
             unsigned int get_packet_count();
  
             /* variables */
-            std::vector<const struct pcap_pkthdr *> pkt_hdr_list;
+            std::list<const struct pcap_pkthdr *> pkt_hdr_list;
 
             unsigned int raw_packet_num;
-            unsigned int buff_seconds;
+            int buff_seconds;
 
 };
 

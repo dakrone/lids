@@ -70,6 +70,7 @@ void LIDSRunner::start()
             exit(1);
       }
 
+      cout << "Capturing..." << endl;
       pcap_loop(handle,-1,(pcap_handler)callback,NULL);
 
       free(handle);
