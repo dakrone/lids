@@ -91,22 +91,22 @@ lidscore.cxx: (methods)
   kind.
 
 Obviously, I'm leaving out all the helper methods and all the class
-cnfiguration (so far). These methods are left as an exercise to the
+configuration (so far). These methods are left as an exercise to the
 reader... oh wait that's me. :P
 
 lidsevent.cxx:
 - constructor, virtual destructor
 - virtual event() method - this is the function called from lidscore
   when a packet that matches the filter is captured.
-  This was chaged to "process_packet in the actual implementation.
+  This was changed to "process_packet in the actual implementation.
 
 The next big thing: how to store all this data somewhere, and when we
 do, what to store?
 
-What if I were to store n minutes worht of packets in a linked list? For
+What if I were to store n minutes worth of packets in a linked list? For
 instance, 5 minutes worth of packet headers (the whole thing should be
 data agnostic), then, when storing a new packet, I can check the first
-packet to see if it's more than 5 minutes olld, and pop it off if it is.
+packet to see if it's more than 5 minutes old, and pop it off if it is.
 
 I can also store metadata about the list and provide methods to
 calculate stuff like packets per second, port lists, etc. I could even
@@ -119,7 +119,7 @@ last time, cache the result and use that.
 lidsbuffer.cxx:
 - store(packet_header) - pushes the packet header to the end of the list
   and calls cleanup()
-- cleanup() - given a perioud of time of which to store packet headers
+- cleanup() - given a period of time of which to store packet headers
   (ie: 5min), remove all the packet headers which are not in that time
   period.
 - get_port_list() - get a list of the ports for the headers, ie:

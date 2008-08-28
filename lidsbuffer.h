@@ -8,11 +8,13 @@
 
 #include <pcap.h>
 #include <sys/types.h>
+#include <vector>
 
 class LIDSBuffer
 {
       public:
             LIDSBuffer();
+            LIDSBuffer(unsigned int seconds);
             ~LIDSBuffer();
             bool buff_store(const struct pcap_pkthdr *header);
             int buff_cleanup();
@@ -20,20 +22,13 @@ class LIDSBuffer
             u_int get_pps();
 
       private:
-            bool unshift();
-            bool push(char type, int port, int src, int dst, int time, int size);
+            unsigned int get_packet_count();
  
             /* variables */
-            char type;
-            int port;
-            int src;
-            int dst;
-            int time;
-            int size;
-            LIDSBuffer* next;
-            LIDSBuffer* head;
+            std::vector<const struct pcap_pkthdr *> pkt_hdr_list;
 
-            int packet_num;
+            unsigned int raw_packet_num;
+            unsigned int buff_seconds;
 
 };
 
