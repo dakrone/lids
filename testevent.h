@@ -8,6 +8,7 @@
 #include <pcap.h>
 #include <sys/types.h>
 
+#include "lidsbuffer.h"
 #include "lidsevent.h"
 
 class TestEvent: public LIDSEvent
@@ -15,7 +16,7 @@ class TestEvent: public LIDSEvent
       public:
             TestEvent();
             ~TestEvent();
-            int process_packet(const struct pcap_pkthdr *header, const u_char *packet);
+            int process_packet(LIDSBuffer* buff);
             char* get_event_name();
 };
 

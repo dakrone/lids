@@ -22,7 +22,7 @@ LIDSBuffer::~LIDSBuffer()
 {
 }
 
-bool LIDSBuffer::buff_store(const struct pcap_pkthdr *header)
+bool LIDSBuffer::buff_store(const struct pcap_pkthdr *header, const u_char *packet)
 {
       IN();
       /*
@@ -30,10 +30,13 @@ bool LIDSBuffer::buff_store(const struct pcap_pkthdr *header)
        * anything to the list
        */
       struct pcap_pkthdr* h = (pcap_pkthdr *)malloc(sizeof(const struct pcap_pkthdr));
+      u_char* p = (u_char *)malloc(sizeof(const u_char));
       memcpy(h,header,sizeof(const struct pcap_pkthdr));
+      memcpy(p,packet,sizeof(const u_char));
 
       /* push the new struct on the end of the list */
       this->pkt_hdr_list.push_back(h);
+      this->pkt_list.push_back(p);
 
       /* increase our raw packet number */
       this->raw_packet_num++;
@@ -42,13 +45,15 @@ bool LIDSBuffer::buff_store(const struct pcap_pkthdr *header)
       this->buff_cleanup();
       //int cc = this->buff_cleanup();
 
-      //cout << "there have been: " << raw_packet_num << " packets added." << endl;
-      //cout << "total: " << get_packet_count() << " packets." << endl;
-      //if (cc >= 1)
-      //{
-            //cout << "cleaned: " << cc << " packets" << endl;
-            //cout << "after cleanup: " << get_packet_count() << " packets" << endl;
-      //}
+      /*
+       *cout << "there have been: " << raw_packet_num << " packets added." << endl;
+       *cout << "total: " << get_packet_count() << " packets." << endl;
+       *if (cc >= 1)
+       *{
+       *      cout << "cleaned: " << cc << " packets" << endl;
+       *      cout << "after cleanup: " << get_packet_count() << " packets" << endl;
+       *}
+       */
 
       OUTd(0);
       return true;
@@ -67,22 +72,22 @@ int LIDSBuffer::buff_cleanup()
       timeval tim;
       gettimeofday(&tim, NULL);
 
-      while (this->pkt_hdr_list.size() >= 1)
+      while ((this->pkt_hdr_list.size() >= 1) && (this->pkt_list.size() >= 1))
       {
-            //cout << "s: " << pkt_hdr_list.back()->ts.tv_sec;
-            //cout << " e: " << pkt_hdr_list.front()->ts.tv_sec << endl;
             int diff = pkt_hdr_list.back()->ts.tv_sec - pkt_hdr_list.front()->ts.tv_sec;
             if(diff > this->buff_seconds)
             {
-                  //cout << "found expired packet, unshifting" << endl;
+                  /* this is for the header */
                   pcap_pkthdr* h = (pcap_pkthdr *)this->pkt_hdr_list.front();
                   free(h);
                   this->pkt_hdr_list.pop_front();
+
+                  /* this is for the packet contents*/
+                  u_char* p = (u_char *)this->pkt_list.front();
+                  free(p);
+                  this->pkt_list.pop_front();
                   cc++;
             } else {
-
-                  //cout << "difference: ";
-                  //cout << diff << endl;
                   /*
                    * TODO: Fix this so it doesn't break automatically, maybe
                    * have a limit of X packets before we think we won't hit

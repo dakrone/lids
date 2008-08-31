@@ -24,7 +24,7 @@ void LIDSRunner::callback(u_char *args, const struct pcap_pkthdr *header,
       IN();
       cout << ".";
       fflush(stdout);
-      pcore->core_process(header);
+      pcore->core_process(header, packet);
       OUT();
 }
 

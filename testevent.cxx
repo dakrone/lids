@@ -2,8 +2,11 @@
 #include <pcap.h>
 #include <sys/types.h>
 
+#include "lidsbuffer.h"
 #include "testevent.h"
 #include "lidsdebug.h"
+
+using namespace std;
 
 TestEvent::TestEvent()
 {
@@ -13,9 +16,12 @@ TestEvent::~TestEvent()
 {
 }
 
-int TestEvent::process_packet(const struct pcap_pkthdr *header, const u_char *packet)
+int TestEvent::process_packet(LIDSBuffer *buff)
 {
       IN();
+      puts("processing with: ");
+      cout << buff->get_packet_count();
+      puts(" packets in buffer");
       OUT();
       return 0;
 }

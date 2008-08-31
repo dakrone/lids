@@ -12,7 +12,7 @@ LIDSEvent::~LIDSEvent()
 {
 }
 
-int LIDSEvent::process_packet(const struct pcap_pkthdr *header, const u_char *packet)
+int LIDSEvent::process_packet(LIDSBuffer* buff)
 {
       IN();
       OUT();

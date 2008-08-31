@@ -19,13 +19,9 @@ int main(int argc, char** argv) {
 
       LIDSRunner *runner = new LIDSRunner();
 
-      /* let's register 2 test events */
       TestEvent *e = new TestEvent();
-      TestEvent *e2 = new TestEvent();
 
-      /* register the two test events */
       pcore->core_register_event(e);
-      pcore->core_register_event(e2);
 
       events = pcore->core_get_registered_events();
 
