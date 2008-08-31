@@ -16,8 +16,10 @@ class TestEvent: public LIDSEvent
       public:
             TestEvent();
             ~TestEvent();
-            int process_packet(LIDSBuffer* buff);
+            bool process_packet(LIDSBuffer* buff);
             char* get_event_name();
+      private:
+            unsigned int pktbuffcount;
 };
 
 #endif

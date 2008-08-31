@@ -10,20 +10,31 @@ using namespace std;
 
 TestEvent::TestEvent()
 {
+      /*
+       * the minimum number of packets to have in the buffer before generating
+       * any alerts, this is to make sure we don't generate alerts for every
+       * single new packet when lids is first run
+       */
+      pktbuffcount = 50;
 }
 
 TestEvent::~TestEvent()
 {
 }
 
-int TestEvent::process_packet(LIDSBuffer *buff)
+/* returns true or false depending on whether an alert was generated */
+bool TestEvent::process_packet(LIDSBuffer *buff)
 {
       IN();
-      puts("processing with: ");
-      cout << buff->get_packet_count();
-      puts(" packets in buffer");
-      OUT();
-      return 0;
+      bool alerted = false;
+      /* only alert if we've reached the count threshold */
+      if (buff->get_packet_count() > this->pktbuffcount) {
+            puts("Alert! Received packet! (test event)");
+            alerted = true;
+      }
+
+      OUTd(alerted);
+      return alerted;
 }
 
 char* TestEvent::get_event_name()

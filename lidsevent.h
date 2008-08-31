@@ -12,7 +12,8 @@ class LIDSEvent {
             LIDSEvent();
             /* virtual functions to be implemented by inheritors */
             virtual ~LIDSEvent();
-            virtual int process_packet(LIDSBuffer* buff);
+            /* returns true if an alert has been generated */
+            virtual bool process_packet(LIDSBuffer* buff);
             virtual char* get_event_name();
 };
 

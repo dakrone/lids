@@ -12,11 +12,11 @@ LIDSEvent::~LIDSEvent()
 {
 }
 
-int LIDSEvent::process_packet(LIDSBuffer* buff)
+bool LIDSEvent::process_packet(LIDSBuffer* buff)
 {
       IN();
-      OUT();
-      return 0;
+      OUTd(false);
+      return false;
 }
 
 char* LIDSEvent::get_event_name()
