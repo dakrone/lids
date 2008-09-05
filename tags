@@ -31,8 +31,8 @@ OUTf	./lidsdebug.h	15;"	d
 OUTf	./lidsdebug.h	25;"	d
 OUTp	./lidsdebug.h	13;"	d
 OUTp	./lidsdebug.h	23;"	d
-Portevent	./portevent.cxx	/^Portevent::Portevent()$/;"	f	class:Portevent
-Portevent	./portevent.h	/^class Portevent: public LIDSEvent {$/;"	c
+PortEvent	./portevent.cxx	/^PortEvent::PortEvent()$/;"	f	class:PortEvent
+PortEvent	./portevent.h	/^class PortEvent: public LIDSEvent {$/;"	c
 TestEvent	./testevent.cxx	/^TestEvent::TestEvent()$/;"	f	class:TestEvent
 TestEvent	./testevent.h	/^class TestEvent: public LIDSEvent$/;"	c
 WARNING	./lidsalarm.h	13;"	d
@@ -57,7 +57,7 @@ core_register_event	./lidscore.cxx	/^int LIDSCore::core_register_event(LIDSEvent
 core_store	./lidscore.cxx	/^void LIDSCore::core_store(const struct pcap_pkthdr *header, const u_char *packet)$/;"	f	class:LIDSCore
 eventlist	./lidscore.h	/^            std::vector<LIDSEvent*> eventlist;$/;"	m	class:LIDSCore
 get_event_name	./lidsevent.cxx	/^char* LIDSEvent::get_event_name()$/;"	f	class:LIDSEvent
-get_event_name	./portevent.cxx	/^char* Portevent::get_event_name()$/;"	f	class:Portevent
+get_event_name	./portevent.cxx	/^char* PortEvent::get_event_name()$/;"	f	class:PortEvent
 get_event_name	./testevent.cxx	/^char* TestEvent::get_event_name()$/;"	f	class:TestEvent
 get_packet_count	./lidsbuffer.cxx	/^unsigned int LIDSBuffer::get_packet_count()$/;"	f	class:LIDSBuffer
 get_port_list	./lidsbuffer.cxx	/^char** LIDSBuffer::get_port_list()$/;"	f	class:LIDSBuffer
@@ -68,7 +68,7 @@ pkt_hdr_list	./lidsbuffer.h	/^            std::list<const struct pcap_pkthdr *> 
 pkt_list	./lidsbuffer.h	/^            std::list<const u_char *> pkt_list;$/;"	m	class:LIDSBuffer
 pktbuffcount	./testevent.h	/^            unsigned int pktbuffcount;$/;"	m	class:TestEvent
 process_packet	./lidsevent.cxx	/^bool LIDSEvent::process_packet(LIDSBuffer* buff)$/;"	f	class:LIDSEvent
-process_packet	./portevent.cxx	/^bool Portevent::process_packet(LIDSBuffer* buff)$/;"	f	class:Portevent
+process_packet	./portevent.cxx	/^bool PortEvent::process_packet(LIDSBuffer* buff)$/;"	f	class:PortEvent
 process_packet	./testevent.cxx	/^bool TestEvent::process_packet(LIDSBuffer *buff)$/;"	f	class:TestEvent
 raw_packet_num	./lidsbuffer.h	/^            unsigned int raw_packet_num;$/;"	m	class:LIDSBuffer
 start	./lidsrunner.cxx	/^void LIDSRunner::start()$/;"	f	class:LIDSRunner
@@ -78,5 +78,5 @@ throw_alarm	./lidsalarm.cxx	/^void LIDSAlarm::throw_alarm(int urgency, char* mes
 ~LIDSCore	./lidscore.cxx	/^LIDSCore::~LIDSCore()$/;"	f	class:LIDSCore
 ~LIDSEvent	./lidsevent.cxx	/^LIDSEvent::~LIDSEvent()$/;"	f	class:LIDSEvent
 ~LIDSRunner	./lidsrunner.cxx	/^LIDSRunner::~LIDSRunner()$/;"	f	class:LIDSRunner
-~Portevent	./portevent.cxx	/^Portevent::~Portevent()$/;"	f	class:Portevent
+~PortEvent	./portevent.cxx	/^PortEvent::~PortEvent()$/;"	f	class:PortEvent
 ~TestEvent	./testevent.cxx	/^TestEvent::~TestEvent()$/;"	f	class:TestEvent
