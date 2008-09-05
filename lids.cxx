@@ -3,9 +3,10 @@
 
 #include "lidsrunner.h"
 #include "lidscore.h"
-#include "testevent.h"
 #include "lidsevent.h"
 #include "lidsdebug.h"
+#include "testevent.h"
+#include "portevent.h"
 
 using namespace std;
 
@@ -20,8 +21,10 @@ int main(int argc, char** argv) {
       LIDSRunner *runner = new LIDSRunner();
 
       TestEvent *e = new TestEvent();
+      PortEvent *p = new PortEvent();
 
       pcore->core_register_event(e);
+      pcore->core_register_event(p);
 
       events = pcore->core_get_registered_events();
 

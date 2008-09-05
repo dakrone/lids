@@ -10,6 +10,7 @@
 
 #include "lidsbuffer.h"
 #include "lidsevent.h"
+#include "lidsalarm.h"
 
 class TestEvent: public LIDSEvent
 {
@@ -20,6 +21,7 @@ class TestEvent: public LIDSEvent
             char* get_event_name();
       private:
             unsigned int pktbuffcount;
+            LIDSAlarm* ap;
 };
 
 #endif

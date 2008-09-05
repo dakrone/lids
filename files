@@ -1,5 +1,11 @@
 ./.git/gitk.cache
+./.lids.cxx.swp
+./.lidsalarm.cxx.swp
+./.portevent.cxx.swp
+./.testevent.cxx.swp
 ./lids.cxx
+./lidsalarm.cxx
+./lidsalarm.h
 ./lidsbuffer.cxx
 ./lidsbuffer.h
 ./lidscore.cxx
@@ -9,5 +15,7 @@
 ./lidsevent.h
 ./lidsrunner.cxx
 ./lidsrunner.h
+./portevent.cxx
+./portevent.h
 ./testevent.cxx
 ./testevent.h
