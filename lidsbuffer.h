@@ -8,7 +8,7 @@
 
 #include <pcap.h>
 #include <sys/types.h>
-#include <list>
+#include <deque>
 
 class LIDSBuffer
 {
@@ -25,8 +25,8 @@ class LIDSBuffer
       private:
  
             /* variables */
-            std::list<const struct pcap_pkthdr *> pkt_hdr_list;
-            std::list<const u_char *> pkt_list;
+            std::deque<const struct pcap_pkthdr *> pkt_hdr_list;
+            std::deque<const u_char *> pkt_list;
 
             unsigned int raw_packet_num;
             int buff_seconds;
