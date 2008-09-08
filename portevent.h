@@ -14,6 +14,7 @@ class PortEvent: public LIDSEvent {
             char* get_event_name();
 
       private:
+            int low_port_threshold;
 
 
 };
