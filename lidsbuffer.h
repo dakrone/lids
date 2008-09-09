@@ -18,7 +18,7 @@ class LIDSBuffer
             ~LIDSBuffer();
             bool buff_store(const struct pcap_pkthdr *header, const u_char *packet);
             int buff_cleanup();
-            char** get_port_list();
+            int** get_port_list();
             u_int get_pps();
             unsigned int get_packet_count();
 

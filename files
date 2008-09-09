@@ -1,9 +1,6 @@
-./.git/.COMMIT_EDITMSG.swp
 ./.git/gitk.cache
-./.lids.cxx.swp
-./.lidsalarm.cxx.swp
+./.lidsbuffer.cxx.swp
 ./.portevent.cxx.swp
-./.testevent.cxx.swp
 ./lids.cxx
 ./lidsalarm.cxx
 ./lidsalarm.h
@@ -16,6 +13,7 @@
 ./lidsevent.h
 ./lidsrunner.cxx
 ./lidsrunner.h
+./packet_wrap.h
 ./portevent.cxx
 ./portevent.h
 ./testevent.cxx

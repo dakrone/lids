@@ -12,6 +12,10 @@ INDENT_MAX	./lidsdebug.h	2;"	d
 INFORMATION	./lidsalarm.h	14;"	d
 INf	./lidsdebug.h	21;"	d
 INf	./lidsdebug.h	7;"	d
+IP_DF	./packet_wrap.h	36;"	d
+IP_MF	./packet_wrap.h	37;"	d
+IP_OFFMASK	./packet_wrap.h	38;"	d
+IP_RF	./packet_wrap.h	35;"	d
 LIDSAlarm	./lidsalarm.cxx	/^LIDSAlarm::LIDSAlarm()$/;"	f	class:LIDSAlarm
 LIDSAlarm	./lidsalarm.h	/^class LIDSAlarm {$/;"	c
 LIDSBuffer	./lidsbuffer.cxx	/^LIDSBuffer::LIDSBuffer()$/;"	f	class:LIDSBuffer
@@ -33,14 +37,26 @@ OUTp	./lidsdebug.h	13;"	d
 OUTp	./lidsdebug.h	23;"	d
 PortEvent	./portevent.cxx	/^PortEvent::PortEvent()$/;"	f	class:PortEvent
 PortEvent	./portevent.h	/^class PortEvent: public LIDSEvent {$/;"	c
+TCP_PACKET	./packet_wrap.h	12;"	d
+TH_ACK	./packet_wrap.h	64;"	d
+TH_CWR	./packet_wrap.h	67;"	d
+TH_ECE	./packet_wrap.h	66;"	d
+TH_FIN	./packet_wrap.h	60;"	d
+TH_FLAGS	./packet_wrap.h	68;"	d
+TH_PUSH	./packet_wrap.h	63;"	d
+TH_RST	./packet_wrap.h	62;"	d
+TH_SYN	./packet_wrap.h	61;"	d
+TH_URG	./packet_wrap.h	65;"	d
 TestEvent	./testevent.cxx	/^TestEvent::TestEvent()$/;"	f	class:TestEvent
 TestEvent	./testevent.h	/^class TestEvent: public LIDSEvent$/;"	c
+UDP_PACKET	./packet_wrap.h	11;"	d
 WARNING	./lidsalarm.h	13;"	d
 __LIDSALARM__	./lidsalarm.h	4;"	d
 __LIDSBUFFER__	./lidsbuffer.h	7;"	d
 __LIDS_CORE__	./lidscore.h	8;"	d
 __LIDS_EVENT__	./lidsevent.h	4;"	d
 __LIDS_RUNNER__	./lidsrunner.h	2;"	d
+__PACKET_WRAP__	./packet_wrap.h	2;"	d
 __PORTEVENT__	./portevent.h	4;"	d
 __TEST_EVENT__	./testevent.h	6;"	d
 __indent_string	./lidsdebug.h	/^static const char __indent_string[INDENT_MAX+3] = "| | | | | | | | | | | | | | | | | | | | | | | | | \\0\\0\\0";$/;"	v
@@ -55,23 +71,60 @@ core_get_registered_events	./lidscore.cxx	/^vector<LIDSEvent*> LIDSCore::core_ge
 core_process	./lidscore.cxx	/^void LIDSCore::core_process(const struct pcap_pkthdr *header, const u_char *packet)$/;"	f	class:LIDSCore
 core_register_event	./lidscore.cxx	/^int LIDSCore::core_register_event(LIDSEvent *e)$/;"	f	class:LIDSCore
 core_store	./lidscore.cxx	/^void LIDSCore::core_store(const struct pcap_pkthdr *header, const u_char *packet)$/;"	f	class:LIDSCore
+ether_dhost	./packet_wrap.h	/^	u_char  ether_dhost[ETHER_ADDR_LEN];    \/* Destination host address *\/$/;"	m	struct:sniff_ethernet
+ether_shost	./packet_wrap.h	/^	u_char  ether_shost[ETHER_ADDR_LEN];    \/* Source host address *\/$/;"	m	struct:sniff_ethernet
+ether_type	./packet_wrap.h	/^	u_short ether_type;                     \/* IP? ARP? RARP? etc *\/$/;"	m	struct:sniff_ethernet
 eventlist	./lidscore.h	/^            std::vector<LIDSEvent*> eventlist;$/;"	m	class:LIDSCore
 get_event_name	./lidsevent.cxx	/^char* LIDSEvent::get_event_name()$/;"	f	class:LIDSEvent
 get_event_name	./portevent.cxx	/^char* PortEvent::get_event_name()$/;"	f	class:PortEvent
 get_event_name	./testevent.cxx	/^char* TestEvent::get_event_name()$/;"	f	class:TestEvent
 get_packet_count	./lidsbuffer.cxx	/^unsigned int LIDSBuffer::get_packet_count()$/;"	f	class:LIDSBuffer
-get_port_list	./lidsbuffer.cxx	/^char** LIDSBuffer::get_port_list()$/;"	f	class:LIDSBuffer
+get_port_list	./lidsbuffer.cxx	/^int** LIDSBuffer::get_port_list()$/;"	f	class:LIDSBuffer
 get_pps	./lidsbuffer.cxx	/^u_int LIDSBuffer::get_pps()$/;"	f	class:LIDSBuffer
 indent	./lidsdebug.h	/^static const char *indent = __indent_string + INDENT_MAX;$/;"	v
+ip_dst	./packet_wrap.h	/^	  struct  in_addr ip_src,ip_dst;  \/* source and dest address *\/$/;"	m	struct:sniff_ip	typeref:struct:sniff_ip::
+ip_hl	./packet_wrap.h	/^	u_int   ip_hl:4,        \/* header length *\/$/;"	m	struct:sniff_ip
+ip_hl	./packet_wrap.h	/^ip_hl:4;        \/* header length *\/$/;"	m	struct:sniff_ip
+ip_id	./packet_wrap.h	/^	  u_short ip_id;                  \/* identification *\/$/;"	m	struct:sniff_ip
+ip_len	./packet_wrap.h	/^	  u_short ip_len;                 \/* total length *\/$/;"	m	struct:sniff_ip
+ip_off	./packet_wrap.h	/^	  u_short ip_off;                 \/* fragment offset field *\/$/;"	m	struct:sniff_ip
+ip_p	./packet_wrap.h	/^	  u_char  ip_p;                   \/* protocol *\/$/;"	m	struct:sniff_ip
+ip_src	./packet_wrap.h	/^	  struct  in_addr ip_src,ip_dst;  \/* source and dest address *\/$/;"	m	struct:sniff_ip	typeref:struct:sniff_ip::in_addr
+ip_sum	./packet_wrap.h	/^	  u_short ip_sum;                 \/* checksum *\/$/;"	m	struct:sniff_ip
+ip_tos	./packet_wrap.h	/^	  u_char  ip_tos;                 \/* type of service *\/$/;"	m	struct:sniff_ip
+ip_ttl	./packet_wrap.h	/^	  u_char  ip_ttl;                 \/* time to live *\/$/;"	m	struct:sniff_ip
+ip_v	./packet_wrap.h	/^	 u_int   ip_v:4,         \/* version *\/$/;"	m	struct:sniff_ip
+ip_v	./packet_wrap.h	/^ip_v:4;         \/* version *\/$/;"	m	struct:sniff_ip
+low_port_threshold	./portevent.h	/^	int low_port_threshold;$/;"	m	class:PortEvent
 main	./lids.cxx	/^int main(int argc, char** argv) {$/;"	f
-pkt_hdr_list	./lidsbuffer.h	/^            std::list<const struct pcap_pkthdr *> pkt_hdr_list;$/;"	m	class:LIDSBuffer
-pkt_list	./lidsbuffer.h	/^            std::list<const u_char *> pkt_list;$/;"	m	class:LIDSBuffer
+pkt_hdr_list	./lidsbuffer.h	/^            std::deque<const struct pcap_pkthdr *> pkt_hdr_list;$/;"	m	class:LIDSBuffer
+pkt_list	./lidsbuffer.h	/^            std::deque<const u_char *> pkt_list;$/;"	m	class:LIDSBuffer
 pktbuffcount	./testevent.h	/^            unsigned int pktbuffcount;$/;"	m	class:TestEvent
 process_packet	./lidsevent.cxx	/^bool LIDSEvent::process_packet(LIDSBuffer* buff)$/;"	f	class:LIDSEvent
 process_packet	./portevent.cxx	/^bool PortEvent::process_packet(LIDSBuffer* buff)$/;"	f	class:PortEvent
 process_packet	./testevent.cxx	/^bool TestEvent::process_packet(LIDSBuffer *buff)$/;"	f	class:TestEvent
 raw_packet_num	./lidsbuffer.h	/^            unsigned int raw_packet_num;$/;"	m	class:LIDSBuffer
+sniff_ethernet	./packet_wrap.h	/^struct sniff_ethernet {$/;"	s
+sniff_ip	./packet_wrap.h	/^struct sniff_ip {$/;"	s
+sniff_tcp	./packet_wrap.h	/^struct sniff_tcp {$/;"	s
+sniff_udp	./packet_wrap.h	/^struct sniff_udp {$/;"	s
 start	./lidsrunner.cxx	/^void LIDSRunner::start()$/;"	f	class:LIDSRunner
+th_ack	./packet_wrap.h	/^	tcp_seq th_ack;                         \/* acknowledgement number *\/$/;"	m	struct:sniff_tcp
+th_dport	./packet_wrap.h	/^	u_short th_dport;                       \/* destination port *\/$/;"	m	struct:sniff_tcp
+th_dport	./packet_wrap.h	/^	u_short th_dport;                       \/* destination port *\/$/;"	m	struct:sniff_udp
+th_flags	./packet_wrap.h	/^	  u_char  th_flags;$/;"	m	struct:sniff_tcp
+th_len	./packet_wrap.h	/^	u_short th_len;                         \/* length *\/$/;"	m	struct:sniff_udp
+th_off	./packet_wrap.h	/^	   u_int   th_off:4,               \/* data offset *\/$/;"	m	struct:sniff_tcp
+th_off	./packet_wrap.h	/^th_off:4;               \/* data offset *\/$/;"	m	struct:sniff_tcp
+th_seq	./packet_wrap.h	/^	tcp_seq th_seq;                         \/* sequence number *\/$/;"	m	struct:sniff_tcp
+th_sport	./packet_wrap.h	/^	u_short th_sport;                       \/* source port *\/$/;"	m	struct:sniff_tcp
+th_sport	./packet_wrap.h	/^	u_short th_sport;                       \/* source port *\/$/;"	m	struct:sniff_udp
+th_sum	./packet_wrap.h	/^	  u_short th_sum;                         \/* checksum *\/$/;"	m	struct:sniff_tcp
+th_sum	./packet_wrap.h	/^	u_short th_sum;                         \/* checksum *\/$/;"	m	struct:sniff_udp
+th_urp	./packet_wrap.h	/^	  u_short th_urp;                         \/* urgent pointer *\/$/;"	m	struct:sniff_tcp
+th_win	./packet_wrap.h	/^	  u_short th_win;                         \/* window *\/$/;"	m	struct:sniff_tcp
+th_x2	./packet_wrap.h	/^	u_int   th_x2:4,                \/* (unused) *\/$/;"	m	struct:sniff_tcp
+th_x2	./packet_wrap.h	/^th_x2:4;                \/* (unused) *\/$/;"	m	struct:sniff_tcp
 throw_alarm	./lidsalarm.cxx	/^void LIDSAlarm::throw_alarm(int urgency, char* message)$/;"	f	class:LIDSAlarm
 ~LIDSAlarm	./lidsalarm.cxx	/^LIDSAlarm::~LIDSAlarm()$/;"	f	class:LIDSAlarm
 ~LIDSBuffer	./lidsbuffer.cxx	/^LIDSBuffer::~LIDSBuffer()$/;"	f	class:LIDSBuffer

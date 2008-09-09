@@ -7,14 +7,14 @@
 #include "lidsbuffer.h"
 
 class PortEvent: public LIDSEvent {
-      public:
-            PortEvent();
-            ~PortEvent();
-            bool process_packet(LIDSBuffer* buff);
-            char* get_event_name();
+public:
+	PortEvent();
+	~PortEvent();
+	bool process_packet(LIDSBuffer* buff);
+	char* get_event_name();
 
-      private:
-            int low_port_threshold;
+private:
+	int low_port_threshold;
 
 
 };

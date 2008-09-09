@@ -3,6 +3,8 @@
 
 #include "lidsbuffer.h"
 #include "lidsdebug.h"
+/* for packet information */
+#include "packet_wrap.h"
 
 using namespace std;
 
@@ -72,11 +74,11 @@ int LIDSBuffer::buff_cleanup()
       timeval tim;
       gettimeofday(&tim, NULL);
 
-      while ((this->pkt_hdr_list.size() >= 1) && (this->pkt_list.size() >= 1))
-      {
+      while ((this->pkt_hdr_list.size() >= 1) && (this->pkt_list.size() >= 1)) {
+
             int diff = pkt_hdr_list.back()->ts.tv_sec - pkt_hdr_list.front()->ts.tv_sec;
-            if(diff > this->buff_seconds)
-            {
+            if(diff > this->buff_seconds) {
+
                   /* this is for the header */
                   pcap_pkthdr* h = (pcap_pkthdr *)this->pkt_hdr_list.front();
                   free(h);
@@ -109,17 +111,67 @@ unsigned int LIDSBuffer::get_packet_count()
       return this->pkt_hdr_list.size();
 }
 
-char** LIDSBuffer::get_port_list()
+/*
+ * Return a 2-dimensional array of all the ports in the file.
+ * The first array will be a list of the ports, the second is the number of
+ * occurrences in the buffer. Basically a hash? Maybe I'll change it to
+ * actually be an STL hash in the future.
+ */
+int** LIDSBuffer::get_port_list()
 {
       IN();
-      OUT();
-      return NULL;
+      unsigned int i = 0;
+	int** plist = NULL;
+
+	for (i = 0; i < this->pkt_list.size(); i++) {
+		const u_char* packet = this->pkt_list[i];
+		/* get port info from packet */
+		const struct sniff_ethernet *ethernet;  /* The Ethernet header */
+		const struct sniff_ip *ip;              /* The IP header */
+		const u_char *payload;                    /* Packet payload */
+		/* And define the size of the structures we're using */
+		int size_ethernet = sizeof(struct sniff_ethernet);
+		int size_ip = sizeof(struct sniff_ip);
+		int size_Xcp = 0;
+		int sport = 0;
+		int dport = 0;
+
+		/* -- Define our packet's attributes -- */
+		ethernet = (struct sniff_ethernet*)(packet);
+		ip = (struct sniff_ip*)(packet + size_ethernet);
+		cout << "packet_tos: " << ip->ip_tos << endl;
+		if (ip->ip_tos == TCP_PACKET) {
+			/* The TCP header */
+			const struct sniff_tcp *Xcp;
+			size_Xcp = sizeof(struct sniff_tcp);
+
+			Xcp = (struct sniff_tcp*)(packet + size_ethernet + size_ip);
+			sport = Xcp->th_sport;
+			dport = Xcp->th_dport;
+			cout << "found port pair: " << sport << " -> " << dport << endl;
+		} else if (ip->ip_tos == UDP_PACKET) {
+			/* The UDP header */
+			const struct sniff_udp *Xcp;
+			size_Xcp = sizeof(struct sniff_udp);
+			
+			Xcp = (struct sniff_udp*)(packet + size_ethernet + size_ip);
+			sport = Xcp->th_sport;
+			dport = Xcp->th_dport;
+			cout << "found port pair: " << sport << " -> " << dport << endl;
+		}
+
+		payload = (u_char *)(packet + size_ethernet + size_ip + size_Xcp);
+
+	}
+
+	OUTp(plist);
+	return plist;
 }
 
 u_int LIDSBuffer::get_pps()
 {
-      IN();
-      OUT();
-      return 100;
+	IN();
+	OUT();
+	return 100;
 }
 
