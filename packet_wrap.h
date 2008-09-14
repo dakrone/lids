@@ -2,6 +2,10 @@
 #define __PACKET_WRAP__
 
 #include <pcap.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <errno.h>
+#include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <net/if.h>
@@ -65,7 +69,11 @@ th_x2:4;                /* (unused) */
 #define TH_URG  0x20
 #define TH_ECE  0x40
 #define TH_CWR  0x80
+
+#ifndef TH_FLAGS
 #define TH_FLAGS        (TH_FIN|TH_SYN|TH_RST|TH_ACK|TH_URG|TH_ECE|TH_CWR)
+#endif
+
 	  u_short th_win;                         /* window */
 	  u_short th_sum;                         /* checksum */
 	  u_short th_urp;                         /* urgent pointer */
