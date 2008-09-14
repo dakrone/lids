@@ -61,8 +61,8 @@ void LIDSCore::core_dispatch()
 {
       IN();
       for (u_int i = 0; i < this->eventlist.size(); i++) {
-            cout << "dispatching to: ";
-            cout << this->eventlist[i]->get_event_name() << endl;
+            //cout << "dispatching to: ";
+            //cout << this->eventlist[i]->get_event_name() << endl;
             this->eventlist[i]->process_packet(this->buff);
       }
       OUT();

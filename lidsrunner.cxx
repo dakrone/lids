@@ -47,7 +47,7 @@ void LIDSRunner::start()
       }
 
       /* print out device name */
-      //dev = "en1";
+	//dev = "en1";
       cout << "Dev: " << dev << endl;
 
       pcap_lookupnet(dev,&net,&mask,errbuf);

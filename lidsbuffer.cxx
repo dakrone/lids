@@ -139,7 +139,16 @@ int** LIDSBuffer::get_port_list()
 		/* -- Define our packet's attributes -- */
 		ethernet = (struct sniff_ethernet*)(packet);
 		ip = (struct sniff_ip*)(packet + size_ethernet);
-		cout << "packet_tos: " << ip->ip_tos << endl;
+
+		/*
+		 * TODO: find the right offset for source port, this way, I can
+		 * entirely bypass the whole "tcp or udp" determinations and just
+		 * grab the ports I want. It's not 0.
+		 */
+		sport = *(packet + size_ethernet + size_ip + 0);
+		if (sport != 0)
+			printf("sport: %d\n",sport);
+
 		if (ip->ip_tos == TCP_PACKET) {
 			/* The TCP header */
 			const struct sniff_tcp *Xcp;
@@ -161,6 +170,17 @@ int** LIDSBuffer::get_port_list()
 		}
 
 		payload = (u_char *)(packet + size_ethernet + size_ip + size_Xcp);
+
+		if (sport > 0 && dport > 0) {
+
+			cout << "packet_tos: " << ip->ip_tos << endl;
+
+			plist[i] = (int*)malloc(2 * sizeof(int));
+			//plist[i][1] = malloc(sizeof(dport));
+			memcpy(plist[i],&sport,sizeof(int));
+			memcpy((plist[i]+sizeof(int)),&dport,sizeof(int));
+
+		}
 
 	}
 

@@ -1,7 +1,9 @@
 # regular compile
 CC = g++ -Wall
+# semi-debug (no crazy call trees)
+#CC = g++ -g -O0 -Wall
 # For debug (uncomment)
-#CC = g++ -g -Wall -DDEBUG
+#CC = g++ -g -O0 -Wall -DDEBUG
 
 
 lids: lids.o lidscore.o testevent.o lidsevent.o lidsbuffer.o lidsrunner.o lidsalarm.o portevent.o
