@@ -121,71 +121,40 @@ int** LIDSBuffer::get_port_list()
 {
       IN();
       unsigned int i = 0;
-	int** plist = NULL;
 
 	for (i = 0; i < this->pkt_list.size(); i++) {
+
 		const u_char* packet = this->pkt_list[i];
-		/* get port info from packet */
-		const struct sniff_ethernet *ethernet;  /* The Ethernet header */
-		const struct sniff_ip *ip;              /* The IP header */
-		const u_char *payload;                    /* Packet payload */
+		/* The Ethernet header */
+		const struct sniff_ethernet *ethernet;
+		/* The IP header */
+		const struct sniff_ip *ip;
+		/* XDP details */
+		const struct sniff_udp *Xdp;
 		/* And define the size of the structures we're using */
 		int size_ethernet = sizeof(struct sniff_ethernet);
 		int size_ip = sizeof(struct sniff_ip);
-		int size_Xcp = 0;
-		int sport = 0;
-		int dport = 0;
+		u_short sport = 0;
+		u_short dport = 0;
 
 		/* -- Define our packet's attributes -- */
 		ethernet = (struct sniff_ethernet*)(packet);
 		ip = (struct sniff_ip*)(packet + size_ethernet);
+		Xdp = (struct sniff_udp*)(packet + size_ethernet + size_ip);
 
-		/*
-		 * TODO: find the right offset for source port, this way, I can
-		 * entirely bypass the whole "tcp or udp" determinations and just
-		 * grab the ports I want. It's not 0.
-		 */
-		sport = *(packet + size_ethernet + size_ip + 0);
+		/* TODO: find the right offset for source port. */
+
+		sport = Xdp->th_sport;
 		if (sport != 0)
 			printf("sport: %d\n",sport);
-
-		if (ip->ip_tos == TCP_PACKET) {
-			/* The TCP header */
-			const struct sniff_tcp *Xcp;
-			size_Xcp = sizeof(struct sniff_tcp);
-
-			Xcp = (struct sniff_tcp*)(packet + size_ethernet + size_ip);
-			sport = Xcp->th_sport;
-			dport = Xcp->th_dport;
-			cout << "found port pair: " << sport << " -> " << dport << endl;
-		} else if (ip->ip_tos == UDP_PACKET) {
-			/* The UDP header */
-			const struct sniff_udp *Xcp;
-			size_Xcp = sizeof(struct sniff_udp);
-			
-			Xcp = (struct sniff_udp*)(packet + size_ethernet + size_ip);
-			sport = Xcp->th_sport;
-			dport = Xcp->th_dport;
-			cout << "found port pair: " << sport << " -> " << dport << endl;
-		}
-
-		payload = (u_char *)(packet + size_ethernet + size_ip + size_Xcp);
-
-		if (sport > 0 && dport > 0) {
-
-			cout << "packet_tos: " << ip->ip_tos << endl;
-
-			plist[i] = (int*)malloc(2 * sizeof(int));
-			//plist[i][1] = malloc(sizeof(dport));
-			memcpy(plist[i],&sport,sizeof(int));
-			memcpy((plist[i]+sizeof(int)),&dport,sizeof(int));
-
-		}
+		dport = Xdp->th_dport;
+		if (dport != 0)
+			printf("dport: %d\n",dport);
 
 	}
 
-	OUTp(plist);
-	return plist;
+	OUT();
+	return NULL;
 }
 
 u_int LIDSBuffer::get_pps()

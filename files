@@ -1,6 +1,6 @@
 ./.git/gitk.cache
 ./.lidsbuffer.cxx.swp
-./.portevent.cxx.swp
+./.lidsrunner.cxx.swp
 ./lids.cxx
 ./lidsalarm.cxx
 ./lidsalarm.h

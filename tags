@@ -12,10 +12,10 @@ INDENT_MAX	./lidsdebug.h	2;"	d
 INFORMATION	./lidsalarm.h	14;"	d
 INf	./lidsdebug.h	21;"	d
 INf	./lidsdebug.h	7;"	d
-IP_DF	./packet_wrap.h	36;"	d
-IP_MF	./packet_wrap.h	37;"	d
-IP_OFFMASK	./packet_wrap.h	38;"	d
-IP_RF	./packet_wrap.h	35;"	d
+IP_DF	./packet_wrap.h	40;"	d
+IP_MF	./packet_wrap.h	41;"	d
+IP_OFFMASK	./packet_wrap.h	42;"	d
+IP_RF	./packet_wrap.h	39;"	d
 LIDSAlarm	./lidsalarm.cxx	/^LIDSAlarm::LIDSAlarm()$/;"	f	class:LIDSAlarm
 LIDSAlarm	./lidsalarm.h	/^class LIDSAlarm {$/;"	c
 LIDSBuffer	./lidsbuffer.cxx	/^LIDSBuffer::LIDSBuffer()$/;"	f	class:LIDSBuffer
@@ -37,19 +37,19 @@ OUTp	./lidsdebug.h	13;"	d
 OUTp	./lidsdebug.h	23;"	d
 PortEvent	./portevent.cxx	/^PortEvent::PortEvent()$/;"	f	class:PortEvent
 PortEvent	./portevent.h	/^class PortEvent: public LIDSEvent {$/;"	c
-TCP_PACKET	./packet_wrap.h	12;"	d
-TH_ACK	./packet_wrap.h	64;"	d
-TH_CWR	./packet_wrap.h	67;"	d
-TH_ECE	./packet_wrap.h	66;"	d
-TH_FIN	./packet_wrap.h	60;"	d
-TH_FLAGS	./packet_wrap.h	68;"	d
-TH_PUSH	./packet_wrap.h	63;"	d
-TH_RST	./packet_wrap.h	62;"	d
-TH_SYN	./packet_wrap.h	61;"	d
-TH_URG	./packet_wrap.h	65;"	d
+TCP_PACKET	./packet_wrap.h	16;"	d
+TH_ACK	./packet_wrap.h	68;"	d
+TH_CWR	./packet_wrap.h	71;"	d
+TH_ECE	./packet_wrap.h	70;"	d
+TH_FIN	./packet_wrap.h	64;"	d
+TH_FLAGS	./packet_wrap.h	74;"	d
+TH_PUSH	./packet_wrap.h	67;"	d
+TH_RST	./packet_wrap.h	66;"	d
+TH_SYN	./packet_wrap.h	65;"	d
+TH_URG	./packet_wrap.h	69;"	d
 TestEvent	./testevent.cxx	/^TestEvent::TestEvent()$/;"	f	class:TestEvent
 TestEvent	./testevent.h	/^class TestEvent: public LIDSEvent$/;"	c
-UDP_PACKET	./packet_wrap.h	11;"	d
+UDP_PACKET	./packet_wrap.h	15;"	d
 WARNING	./lidsalarm.h	13;"	d
 __LIDSALARM__	./lidsalarm.h	4;"	d
 __LIDSBUFFER__	./lidsbuffer.h	7;"	d
