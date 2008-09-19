@@ -120,27 +120,21 @@ unsigned int LIDSBuffer::get_packet_count()
 int** LIDSBuffer::get_port_list()
 {
       IN();
+	this->buff_cleanup();
+
       unsigned int i = 0;
 
 	for (i = 0; i < this->pkt_list.size(); i++) {
 
 		const u_char* packet = this->pkt_list[i];
-		/* The Ethernet header */
-		const struct sniff_ethernet *ethernet;
-		/* The IP header */
-		const struct sniff_ip *ip;
 		/* XDP details */
-		const struct sniff_udp *Xdp;
+		const struct port_header *Xdp;
 		/* And define the size of the structures we're using */
-		int size_ethernet = sizeof(struct sniff_ethernet);
-		int size_ip = sizeof(struct sniff_ip);
 		u_short sport = 0;
 		u_short dport = 0;
 
 		/* -- Define our packet's attributes -- */
-		ethernet = (struct sniff_ethernet*)(packet);
-		ip = (struct sniff_ip*)(packet + size_ethernet);
-		Xdp = (struct sniff_udp*)(packet + size_ethernet + size_ip);
+		Xdp = (struct port_header*)(packet);
 
 		/* TODO: find the right offset for source port. */
 

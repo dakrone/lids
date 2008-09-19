@@ -1,7 +1,7 @@
 # regular compile
 CC = g++ -Wall
 # semi-debug (no crazy call trees)
-#CC = g++ -g -O0 -Wall
+CC = g++ -g -O0 -Wall
 # For debug (uncomment)
 #CC = g++ -g -O0 -Wall -DDEBUG
 
