@@ -108,4 +108,21 @@ struct port_header {
 
 };
 
+/* Test header for packets */
+struct port_test {
+	u_int eth1;
+	u_int eth2;
+	u_int eth3;
+	u_char eth4;
+
+	u_int ip1;
+	u_int ip2;
+	u_int ip3;
+	u_int ip4;
+	u_int ip5;
+
+	u_short th_sport;
+	u_short th_dport;
+};
+
 #endif

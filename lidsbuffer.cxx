@@ -128,13 +128,13 @@ int** LIDSBuffer::get_port_list()
 
 		const u_char* packet = this->pkt_list[i];
 		/* XDP details */
-		const struct port_header *Xdp;
+		const struct port_test *Xdp;
 		/* And define the size of the structures we're using */
 		u_short sport = 0;
 		u_short dport = 0;
 
 		/* -- Define our packet's attributes -- */
-		Xdp = (struct port_header*)(packet);
+		Xdp = (struct port_test*)(packet);
 
 		/* TODO: find the right offset for source port. */
 
