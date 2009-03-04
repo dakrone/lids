@@ -50,7 +50,9 @@ struct sniff_ip {
 struct sniff_tcp {
 	u_short th_sport;                       /* source port */
 	u_short th_dport;                       /* destination port */
-	tcp_seq th_seq;                         /* sequence number */
+/* Not entirely sure this is correct, but I am able to at least compile. */
+#define tcp_seq u_int                     /* define tcp_seq */
+   tcp_seq th_seq;                         /* sequence number */
 	tcp_seq th_ack;                         /* acknowledgement number */
 #if BYTE_ORDER == LITTLE_ENDIAN
 	u_int   th_x2:4,                /* (unused) */
