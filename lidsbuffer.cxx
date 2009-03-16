@@ -1,5 +1,6 @@
 #include <iostream>
 #include <sys/time.h>
+#include <string.h>
 
 #include "lidsbuffer.h"
 #include "lidsdebug.h"
